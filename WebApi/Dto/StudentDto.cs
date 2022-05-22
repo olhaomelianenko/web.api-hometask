@@ -11,7 +11,7 @@ namespace WebApi.Dto
 
         public int Id { get; set; }
 
-        public DateTime BirthDate { get; set; }
+        public Nullable<DateTime> BirthDate { get; set; }
 
         public string PhoneNumber { get; set; }
 

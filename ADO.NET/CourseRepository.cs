@@ -91,7 +91,7 @@ namespace ADO.NET
                     Student student = new Student();
                     student.Id = reader.GetInt32(0);
                     student.Name = reader.GetStringOrDefault(1);
-                    student.BirthDate = reader.GetDateTime(2);
+                    student.BirthDate = reader.IsDBNull(2) ? null : reader.GetDateTime(2);
                     student.PhoneNumber = reader.GetStringOrDefault(3);
                     student.Email = reader.GetStringOrDefault(4);
                     student.GitHubLink = reader.GetStringOrDefault(5);

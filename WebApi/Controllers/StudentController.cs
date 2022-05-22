@@ -37,12 +37,28 @@ namespace WebApi.Controllers
 
             return Ok(StudentDto.FromModel(student));
         }
-        
+
+        // POST api/Student
+        [HttpPost]
+        public ActionResult Create([FromBody] StudentDto value)
+        {
+            var result = _studentService.CreateStudent(value.ToModel());
+
+            if (result.HasErrors)
+            {
+                return BadRequest(result.Errors);
+            }
+
+            return Ok(result.Result);
+        }
+
         // PUT api/Student/5
         [HttpPut("{id}")]
         public ActionResult Put(int id, [FromBody] StudentDto value)
         {
-            var result = _studentService.UpdateStudent(value.ToModel());
+            var studentModel = value.ToModel();
+            studentModel.Id = id;
+            var result = _studentService.UpdateStudent(studentModel);
             if (result.HasErrors)
             {
                 return BadRequest(result.Errors);

@@ -61,6 +61,14 @@ namespace WebApi.Dto
                 StartDate = course.StartDate,
                 PassCredits = course.PassCredits,
                 EndDate = course.EndDate,
+                Students = course.Students.Select(p => new StudentDto()
+                {
+                    Id = p.Id,
+                    Email = p.Email,
+                    Name = p.Name,
+                    PhoneNumber = p.PhoneNumber,
+                    Notes = p.Notes
+                }).ToList(),
                 HomeTasks = course.HomeTasks.Select(p => new HomeTaskDto()
                 {
                     Id = p.Id,
